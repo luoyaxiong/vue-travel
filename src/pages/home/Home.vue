@@ -1,15 +1,18 @@
 <template>
   <div>
     <home-header></home-header>
+    <home-scroll></home-scroll>
   </div>
 </template>
 
 <script>
 import HomeHeader from './components/Header'
+import HomeScroll from './components/Scroll'
 export default {
   name: 'Home',
   components: {
-    HomeHeader
+    HomeHeader,
+    HomeScroll
   }
 }
 </script>
