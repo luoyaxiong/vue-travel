@@ -15,6 +15,7 @@ import HomeScroll from './components/Scroll'
 import HomeIcon from './components/Icon'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -24,6 +25,18 @@ export default {
     HomeIcon,
     HomeRecommend,
     HomeWeekend
+  },
+  methods: {
+    getHomeInfo () {
+      // 这里then传入的是函数名，作为argument 不是调用
+      axios.get('/api/test.json').then(this.getHomeSucc)
+    },
+    getHomeSucc (res) {
+      console.log(res)
+    }
+  },
+  mounted () {
+    this.getHomeInfo()
   }
 }
 </script>
