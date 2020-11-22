@@ -8,7 +8,7 @@
       Input city/sight
     </div>
     <div class="header-city">
-      Beijing
+      {{city}}
       <span class="iconfont arrow-icon">&#xe62d;</span>
     </div>
   </div>
@@ -16,7 +16,10 @@
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    city: String
+  }
 }
 </script>
 

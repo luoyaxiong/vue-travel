@@ -3,6 +3,7 @@
     <swiper
       ref="mySwiper"
       :options="swiperOptions"
+      v-if="showPages"
     >
       <swiper-slide v-for="(page, index) of pages"
       :key="index">
@@ -28,6 +29,9 @@
 <script>
 export default {
   name: 'HomeIcon',
+  props: {
+    iconList: Array
+  },
   data () {
     return {
       swiperOptions: {
@@ -36,64 +40,65 @@ export default {
           clickable: true
         },
         loop: true
+        // autoPlay: true
         // Some Swiper option/callback...
-      },
-      iconList: [
-        {
-          id: '0001',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/158387fe5376294f3776d01358d6b73b.png',
-          desc: '景点门票'
-        },
-        {
-          id: '0002',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票1'
-        },
-        {
-          id: '0003',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票2'
-        },
-        {
-          id: '0004',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票3'
-        },
-        {
-          id: '0005',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票4'
-        },
-        {
-          id: '0006',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票5'
-        },
-        {
-          id: '0007',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票6'
-        },
-        {
-          id: '0008',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票7'
-        },
-        {
-          id: '0009',
-          imgUrl:
-            'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
-          desc: '景点门票8'
-        }
-      ]
+      }
+      // iconList: [
+      //   {
+      //     id: '0001',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/158387fe5376294f3776d01358d6b73b.png',
+      //     desc: '景点门票'
+      //   },
+      //   {
+      //     id: '0002',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票1'
+      //   },
+      //   {
+      //     id: '0003',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票2'
+      //   },
+      //   {
+      //     id: '0004',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票3'
+      //   },
+      //   {
+      //     id: '0005',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票4'
+      //   },
+      //   {
+      //     id: '0006',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票5'
+      //   },
+      //   {
+      //     id: '0007',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票6'
+      //   },
+      //   {
+      //     id: '0008',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票7'
+      //   },
+      //   {
+      //     id: '0009',
+      //     imgUrl:
+      //       'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20209/69e8b07cb2d438c5530aebd4c8e3abd3.png',
+      //     desc: '景点门票8'
+      //   }
+      // ]
     }
   },
   computed: {
@@ -107,6 +112,9 @@ export default {
         pages[page].push(item)
       })
       return pages
+    },
+    showPages () {
+      return this.pages.length
     }
   }
 //   mounted () {
@@ -151,7 +159,7 @@ export default {
             right: 0
             bottom: 0
             height: .44rem
-            line-height: .84rem
+            line-height: 1.1rem
             text-align: center
             color: $darkTextColor
         // ellipsis()

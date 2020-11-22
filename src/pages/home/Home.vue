@@ -1,10 +1,10 @@
 <template>
   <div>
-    <home-header></home-header>
-    <home-scroll></home-scroll>
-    <home-icon></home-icon>
-    <home-recommend></home-recommend>
-    <home-weekend></home-weekend>
+    <home-header :city="city"></home-header>
+    <home-scroll :swiperList="swiperList"></home-scroll>
+    <home-icon :iconList="iconList"></home-icon>
+    <home-recommend :recommendList="recommendList"></home-recommend>
+    <home-weekend :weekendList="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -19,6 +19,15 @@ import axios from 'axios'
 
 export default {
   name: 'Home',
+  data () {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    }
+  },
   components: {
     HomeHeader,
     HomeScroll,
@@ -29,10 +38,18 @@ export default {
   methods: {
     getHomeInfo () {
       // 这里then传入的是函数名，作为argument 不是调用
-      axios.get('/api/test.json').then(this.getHomeSucc)
+      axios.get('/api/index.json').then(this.getHomeSucc)
     },
     getHomeSucc (res) {
-      console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
     }
   },
   mounted () {
