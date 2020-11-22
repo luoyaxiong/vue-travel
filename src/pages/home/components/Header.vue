@@ -5,12 +5,15 @@
     </div>
     <div class="header-search">
       <span class="iconfont">&#xe632;</span>
-      Input city/sight
+      输入城市/景点/地点
     </div>
-    <div class="header-city">
-      {{city}}
-      <span class="iconfont arrow-icon">&#xe62d;</span>
-    </div>
+    <router-link to="/City">
+      <div class="header-city">
+        {{city}}
+        <span class="iconfont arrow-icon">&#xe62d;</span>
+     </div>
+    </router-link>
+
   </div>
 </template>
 
@@ -55,6 +58,7 @@ export default {
     width: 1.34rem;
     text-align: center;
     font-size: 0.28rem;
+    color: white;
 
     .arrow-icon {
       font-size: 0.24rem;
