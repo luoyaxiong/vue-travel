@@ -70,7 +70,7 @@ export default {
     // 这里还有个小bug 就是刚加载进入不能滑动: 加长延时的时间就可以解决
     setTimeout(() => {
       this.scroll = new BScroll(this.$refs.wrapper)
-    }, 60)
+    }, 20)
   }
 }
 </script>
