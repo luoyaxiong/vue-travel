@@ -17,3 +17,18 @@ ES6 : components:{App}  equal components:{App: App}
  ## Iconfont
 
  https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=2209454
+
+
+## window 抖动
+控制宽高比
+overflow hidden
+height 0
+width 100
+padding-bottom 33.3%
+
+or
+height 31.25% vw
+width 100
+
+
+
