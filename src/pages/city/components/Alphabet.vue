@@ -21,8 +21,13 @@ export default {
   },
   data () {
     return {
-      touchState: false
+      touchState: false,
+      startY: 0,
+      timer: null
     }
+  },
+  updated () {
+    this.startY = this.$refs['A'][0].offsetTop
   },
   computed: {
     letters () {
@@ -43,10 +48,15 @@ export default {
     },
     handleTouchMove (e) {
       if (this.touchState) {
-        const startY = this.$refs['A'][0].offsetTop
-        const touchY = e.touches[0].clientY - 79
-        const index = Math.floor((touchY - startY) / 22)
-        this.$emit('change', this.letters[index])
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        // const startY =
+        this.timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY - 79
+          const index = Math.floor((touchY - this.startY) / 22)
+          this.$emit('change', this.letters[index])
+        }, 16)
       }
     },
     handleTouchEnd () {
