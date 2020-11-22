@@ -15,12 +15,13 @@
                     <div class="button-list">
                         <div class="button-wrapper"
                         v-for="item of hotCities"
-                        :key="item.id">
+                        :key="item.id"
+                        >
                             <div class="button">{{item.name}}</div>
                         </div>
                     </div>
         </div>
-        <div  v-if="citiesLen">
+        <div >
             <div class="area"
                 v-for="(item, key) of cities"
                 :key="key"
@@ -48,12 +49,21 @@ export default {
   name: 'CityList',
   props: {
     hotCities: Array,
-    cities: Object
+    cities: Object,
+    letter: String
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   },
   computed: {
-    citiesLen () {
-      return Object.keys(this.cities).length
-    }
+    // citiesLen () {
+    //   return Object.keys(this.cities).length
+    // }
   },
   mounted () {
     // this.$nextTick 是一个异步函数，为了确保 DOM 已经渲染,底层用到了 MutationObserver 或者是 setTimeout(fn, 0)。其实我们在这里把 this.$nextTick 替换成 setTimeout(fn, 20) 也是可以的（20 ms 是一个经验值，每一个 Tick 约为 17 ms），对用户体验而言都是无感知的。
