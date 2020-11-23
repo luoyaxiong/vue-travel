@@ -7,7 +7,7 @@
       <span class="iconfont">&#xe632;</span>
       输入城市/景点/地点
     </div>
-    <router-link to="/City">
+    <router-link to="/city">
       <div class="header-city">
         {{this.city}}
         <span class="iconfont arrow-icon">&#xe62d;</span>
