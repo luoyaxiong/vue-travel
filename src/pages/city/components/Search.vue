@@ -13,6 +13,7 @@
                 <li class="search-item border-bottom"
                 v-for="item of list"
                 :key="item.id"
+                @click="handleClickHot(item.name)"
                 >
                     {{item.name}}
                 </li>
@@ -25,6 +26,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import { mapActions } from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -64,8 +66,15 @@ export default {
       }, 100)
     }
   },
+  methods: {
+    handleClickHot (cityName) {
+      this.changeCity(cityName)
+      this.$router.push('/')
+    },
+    ...mapActions(['changeCity'])
+  },
   mounted () {
-    this.scroll = new BScroll(this.$refs.search)
+    this.scroll = new BScroll(this.$refs.search, { mouseWheel: true, click: true, tap: true })
   }
 
 }

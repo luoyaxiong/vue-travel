@@ -5,7 +5,9 @@
                     <div class="title border-topbottom">当前城市</div>
                     <div class="button-list">
                         <div class="button-wrapper">
-                            <div class="button">北京</div>
+                            <div class="button">
+                                 {{this.city}}
+                            </div>
                         </div>
                     </div>
         </div>
@@ -16,6 +18,7 @@
                         <div class="button-wrapper"
                         v-for="item of hotCities"
                         :key="item.id"
+                        @click="handleClickHot(item.name)"
                         >
                             <div class="button">{{item.name}}</div>
                         </div>
@@ -30,7 +33,8 @@
                     <div class="item-list ">
                         <div class="item border-bottom"
                         v-for="innerItem of item"
-                        :key="innerItem.id">
+                        :key="innerItem.id"
+                        @click="handleClickHot(innerItem.name)">
                                 {{innerItem.name}}
                         </div>
                     </div>
@@ -44,6 +48,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'CityList',
@@ -51,6 +56,9 @@ export default {
     hotCities: Array,
     cities: Object,
     letter: String
+  },
+  computed: {
+    ...mapState(['city'])
   },
   watch: {
     letter () {
@@ -60,17 +68,23 @@ export default {
       }
     }
   },
-  computed: {
-    // citiesLen () {
-    //   return Object.keys(this.cities).length
-    // }
+  methods: {
+    // mehods 可以传参
+    handleClickHot (cityName) {
+      this.changeCity(cityName)
+      this.$router.push('/')
+    },
+    ...mapActions(['changeCity'])
   },
   mounted () {
     // this.$nextTick 是一个异步函数，为了确保 DOM 已经渲染,底层用到了 MutationObserver 或者是 setTimeout(fn, 0)。其实我们在这里把 this.$nextTick 替换成 setTimeout(fn, 20) 也是可以的（20 ms 是一个经验值，每一个 Tick 约为 17 ms），对用户体验而言都是无感知的。
     // 这里还有个小bug 就是刚加载进入不能滑动: 加长延时的时间就可以解决
+
+    //  给button添加click事件，发现没反应，但另外写了一个button添加同样的事件，却能触发。
+    // 原因是使用了better-scroll，默认它会阻止touch事件。所以在配置中需要加上click: true
     setTimeout(() => {
-      this.scroll = new BScroll(this.$refs.wrapper)
-    }, 20)
+      this.scroll = new BScroll(this.$refs.wrapper, { mouseWheel: true, click: true, tap: true })
+    }, 60)
   }
 }
 </script>
