@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="banner">
+      <div class="banner" @click="handleGallaryOpen">
           <img class="banner-img" src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg" alt="">
           <div class="banner-info">
             <div class="banner-title">故宫（AAAAA景区）</div>
@@ -9,14 +9,43 @@
                 2
             </div>
           </div>
-  </div>
-
+      </div>
+      <common-gallary
+      :swiperList="swiperList"
+      @close='handleGallaryClose'
+      v-show="showGallary"></common-gallary>
   </div>
 </template>
 
 <script>
+import CommonGallary from '@/common/gallary/Gallary'
+
 export default {
-  name: 'DetailBanner'
+  name: 'DetailBanner',
+  data () {
+    return {
+      showGallary: false,
+      swiperList: [{
+        id: '0001',
+        imgUrl: 'http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg'
+      },
+      {
+        id: '0002',
+        imgUrl: 'http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg'
+      }]
+    }
+  },
+  components: {
+    CommonGallary
+  },
+  methods: {
+    handleGallaryOpen () {
+      this.showGallary = true
+    },
+    handleGallaryClose () {
+      this.showGallary = false
+    }
+  }
 }
 </script>
 
