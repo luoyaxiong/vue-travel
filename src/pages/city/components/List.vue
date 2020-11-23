@@ -5,7 +5,8 @@
                     <div class="title border-topbottom">当前城市</div>
                     <div class="button-list">
                         <div class="button-wrapper">
-                            <div class="button">
+                            <div class="button"
+                            @click="handleClick">
                                  {{this.city}}
                             </div>
                         </div>
@@ -69,6 +70,9 @@ export default {
     }
   },
   methods: {
+    handleClick () {
+      this.$router.push('/')
+    },
     // mehods 可以传参
     handleClickHot (cityName) {
       this.changeCity(cityName)
