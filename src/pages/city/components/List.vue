@@ -86,8 +86,15 @@ export default {
 
     //  给button添加click事件，发现没反应，但另外写了一个button添加同样的事件，却能触发。
     // 原因是使用了better-scroll，默认它会阻止touch事件。所以在配置中需要加上click: true
+    // chrome 调试 要刷新才能滑动、 真机不会有这个问题
     setTimeout(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, { mouseWheel: true, click: true, tap: true })
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        mouseWheel: true,
+        click: true,
+        tap: true,
+        disableMouse: false,
+        disableTouch: false
+      })
     }, 60)
   }
 }
