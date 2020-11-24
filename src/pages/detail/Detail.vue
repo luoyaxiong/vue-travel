@@ -17,7 +17,7 @@ export default {
   name: 'Detail',
   data () {
     return {
-      // lastId: '',
+      lastId: '',
       sightName: '',
       bannerImg: '',
       gallaryImgs: [],
@@ -50,12 +50,12 @@ export default {
       }
     }
   },
-  // activated () {
-  //   if (this.lastId !== this.$route.params.id) {
-  //     this.getDetailInfo()
-  //     this.lastId = this.$route.params.id
-  //   }
-  // },
+  activated () {
+    if (this.lastId !== this.$route.params.id) {
+      this.getDetailInfo()
+      this.lastId = this.$route.params.id
+    }
+  },
   mounted () {
     this.getDetailInfo()
   }
