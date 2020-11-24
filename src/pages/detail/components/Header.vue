@@ -3,7 +3,7 @@
     <router-link tag="div" to="/" class="header-abs" v-show="showAbs" >
         <div class="iconfont header-abs-back">&#xe624;</div>
     </router-link>
-    <div
+    <!-- <div
     class="header-fixed"
     v-show="!showAbs"
     :style="opacityStlye">
@@ -11,6 +11,14 @@
             <div class="iconfont header-fixed-back">&#xe624;</div>
         </router-link>
         景点详情
+    </div> -->
+    <div class="header-fixed"
+    v-show="!showAbs"
+    :style="opacityStlye">
+      <router-link to="/">
+            <div class="iconfont header-fixed-back">&#xe624;</div>
+        </router-link>
+      景点详情
     </div>
   </div>
 </template>
@@ -28,8 +36,8 @@ export default {
   },
   methods: {
     handleScroll () {
-      //  console.log('scroll')
       const top = document.documentElement.scrollTop
+      console.log(top)
       if (top > 60) {
         let opacity = top / 140
         opacity = opacity > 1 ? 1 : opacity
@@ -45,10 +53,10 @@ export default {
   activated () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  // 全局解绑
   deactivated () {
     window.removeEventListener('scroll', this.handleScroll)
   }
+
 }
 
 </script>
