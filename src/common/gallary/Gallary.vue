@@ -6,7 +6,7 @@
                 v-for="(item, index) of swiperList"
                 :key="index"><img class="gallary-img" :src="item" >
                 </swiper-slide>
-                <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+                <div class="swiper-pagination" slot="pagination"></div>
           </swiper>
       </div>
   </div>
@@ -21,11 +21,10 @@ export default {
   data () {
     return {
       swiperOptions: {
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   clickable: true,
-        //   paginationType: 'fraction'
-        // },
+        pagination: {
+          el: '.swiper-pagination'
+          // clickable: true,
+        },
         loop: true
         // Some Swiper option/callback...
       }
