@@ -70,6 +70,7 @@ export default {
     handleClickHot (cityName) {
       this.changeCity(cityName)
       this.$router.push('/')
+      this.keyword = ''
     },
     ...mapActions(['changeCity'])
   },
